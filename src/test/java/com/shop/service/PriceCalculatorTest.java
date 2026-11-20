@@ -20,13 +20,13 @@ class PriceCalculatorTest {
 
     @Test
     void totalWithoutCouponAddsTax() {
-        assertEquals(new BigDecimal("236.00"), calculator.calculateTotal(cartOf("100.00", 2), null, "IN"));
+        assertEquals(new BigDecimal("236.00"), calculator.calculateTotal(cartOf("100.00", 2), null));
     }
 
     @Test
     void couponIsAppliedBeforeTax() {
         Coupon tenPercent = new Coupon("WELCOME10", 10, false);
-        assertEquals(new BigDecimal("212.40"), calculator.calculateTotal(cartOf("100.00", 2), tenPercent, "IN"));
+        assertEquals(new BigDecimal("212.40"), calculator.calculateTotal(cartOf("100.00", 2), tenPercent));
     }
 
     @Test
