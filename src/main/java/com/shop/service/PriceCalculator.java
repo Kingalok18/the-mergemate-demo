@@ -29,7 +29,7 @@ public class PriceCalculator {
             return amount;
         }
         BigDecimal discount = amount.multiply(BigDecimal.valueOf(coupon.percentOff()))
-                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+                .divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP);
         return amount.subtract(discount);
     }
 
