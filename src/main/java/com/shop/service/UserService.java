@@ -16,8 +16,13 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+        User user = userRepository.findById(id).orElse(null);
+        return user;
+    }
+
+    public String getDisplayName(Long id) {
+        User user = getUserById(id);
+        return user.name().isBlank() ? user.email() : user.name();
     }
 
     public Optional<User> findByEmail(String email) {
