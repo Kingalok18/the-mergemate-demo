@@ -39,7 +39,7 @@ public class OrderService {
         User user = userService.getUserById(userId);
         inventoryService.reserve(cart.items());
 
-        BigDecimal total = priceCalculator.calculateTotal(cart, coupon);
+        BigDecimal total = priceCalculator.calculateTotal(cart, coupon, "IN");
         String paymentId = paymentService.charge(user.id(), total);
         if (paymentId == null) {
             inventoryService.release(cart.items());

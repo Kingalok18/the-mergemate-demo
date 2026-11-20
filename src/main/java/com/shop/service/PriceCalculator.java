@@ -37,8 +37,10 @@ public class PriceCalculator {
         return amount.multiply(TAX_RATE).setScale(2, RoundingMode.HALF_UP);
     }
 
-    public BigDecimal calculateTotal(Cart cart, Coupon coupon) {
+    /** Tax is only charged for orders shipped inside India ("IN"). */
+    public BigDecimal calculateTotal(Cart cart, Coupon coupon, String region) {
         BigDecimal afterDiscount = applyDiscount(calculateSubtotal(cart), coupon);
-        return afterDiscount.add(calculateTax(afterDiscount));
+        BigDecimal tax = region.equals("IN") ? calculateTax(afterDiscount) : BigDecimal.ZERO;
+        return afterDiscount.add(tax);
     }
 }
