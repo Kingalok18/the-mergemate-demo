@@ -1,0 +1,5 @@
+package com.shop.model;
+
+import java.util.List;
+
+public record Cart(Long userId, List<CartItem> items) {}
